@@ -26,20 +26,18 @@ var btn7 = $('.saveBtn7');
 var btn8 = $('.saveBtn8');
 var btn9 = $('.saveBtn9');
 var saveBtn = [btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9];
-var timeBlock = $('.timeBlock');
-
+var timeBlock = $('.time-block');
+var container = $('.container');
 
 
 $(currentDay).text(moment().format('MMMM Do YYYY'));
 
 
-for (i = 0; i < saveBtn.length; i ++) {
-    saveBtn[i].on('click', function() {
-    var activity = $('textarea[name="activity"]').val();
-    console.log(activity);
+
+container.on('click', '.btn', function(event) {
+var activity = $(event.target).siblings("textarea").val();
+console.log(activity);
+
+// localStorage.setItem('activity', activity);
 });
-};
-
-
-
 
