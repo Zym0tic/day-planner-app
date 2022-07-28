@@ -16,7 +16,8 @@
 var currentDay = "#currentDay";
 var currentTime = moment().format("LT");
 var hour = document.querySelector(".hour");
-var today = moment().format("H");
+// var today = moment().format("H");
+var today = 14;
 var timeBlock = $(".time-block");
 var container = $(".container");
 var textAreas = [
@@ -37,18 +38,23 @@ $(currentDay).text(moment().format("MMMM Do YYYY"));
 container.on("click", ".btn", function (event) {
   var activity = $(event.target).siblings("textarea").val();
 
-  localStorage.setItem("activity", activity);
+  localStorage.setItem(activity, activity);
 });
 
 console.log(today);
 console.log(textAreaNum);
 
+
 for (i = 0; i < textAreas.length; i++) {
 if (today === textAreaNum[i]) {
-    textAreas[i].addClass("present");
+    textAreas[i].removeClass("past future").addClass("present");
 } else if (today > textAreaNum[i]) {
-    textAreas[i].addClass("past");
+    textAreas[i].removeClass("present future").addClass("past");
 } else {
-    textAreas[i].addClass("future");
+    textAreas[i].removeClass("past present").addClass("future");
 };
 }
+
+var newItem = localStorage.getItem("activity");
+console.log(newItem);
+textAreas[0].html(newItem);
